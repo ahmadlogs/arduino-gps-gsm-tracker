@@ -51,7 +51,15 @@ void setup() {
   received_date="";
   msg="";
 
-  sim800.print("AT+CMGF=1\r"); //SMS text mode
+  sim800.println("AT"); //Check GSM Module
+  delay(1000);
+  sim800.println("ATE1"); //Echo ON
+  delay(1000);
+  sim800.println("AT+CPIN?"); //Check SIM ready
+  delay(1000);
+  sim800.println("AT+CMGF=1"); //SMS text mode
+  delay(1000);
+  sim800.println("AT+CNMI=2,2,0,0,0"); //set sms received format
   delay(1000);
   //sendATcommand("AT+CSCLK=2", "OK", 1000);
 
